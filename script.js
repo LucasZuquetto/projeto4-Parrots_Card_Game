@@ -43,7 +43,7 @@ for( let i=0 ; i < QuantidadeCartas*2 ; i ++){
 const flipcard = document.querySelectorAll('.card')
 function flipCardteste() {
     let verificador = document.querySelectorAll('.flipped')
-    if(verificador.length <= 1){
+    if(verificador.length <= 1 && this.classList.contains('flip') == false){
         this.classList.add('flip')
         this.classList.add('flipped')
         setTimeout(compararcartas, 2000)
