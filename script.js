@@ -1,5 +1,7 @@
 let Deck = []
-const DeckPar2 = []
+let DeckPar1 = []
+let DeckPar2 = []
+
 const ParrotName = ['bobross','explody','fiesta', 'metal', 'revertit', 'triplets','unicorn']
 
 //validação do prompt
@@ -17,12 +19,12 @@ function comparador() {
 QuantidadeCartas = QuantidadeCartas/2
 //construindo uma array com todas cartas em ordem aleatória
 for( let i=0 ; i < QuantidadeCartas ; i ++){
-    Deck.push(ParrotName[i])
+    DeckPar1.push(ParrotName[i])
 }
 for( let i=0 ; i < QuantidadeCartas ; i ++){
     DeckPar2.push(ParrotName[i])
 }
-
+Deck.push.apply(Deck, DeckPar1)
 Deck.push.apply(Deck, DeckPar2)
 Deck.sort(comparador)
 
@@ -38,10 +40,34 @@ for( let i=0 ; i < QuantidadeCartas*2 ; i ++){
 }
 
 //função para a carta girar com um clique
-const flipcard = document.querySelectorAll('.card');
+const flipcard = document.querySelectorAll('.card')
 function flipCard() {
-  this.classList.toggle('flip');
+    let verificador = document.querySelectorAll('.flipped')
+    if(verificador.length <= 1){
+        this.classList.add('flip')
+        this.classList.add('flipped')
+        setTimeout(compararcartas, 2000)
+    }
 }
-flipcard.forEach(card => card.addEventListener('click', flipCard));
+flipcard.forEach(card => card.addEventListener('click', flipCard))
 
-//
+//função para comparar as cartas e remover a classe flipped
+function compararcartas(){
+    let verificador = document.querySelectorAll('.flipped')
+    let carta1 = verificador[0].querySelector('.back-face')
+    carta1 = carta1.src
+    let carta2 = verificador[1].querySelector('.back-face')
+    carta2 = carta2.src
+    if(verificador.length == 2){
+        if(carta1 !== carta2){
+            verificador[0] = verificador[0].classList.remove('flip')
+            verificador[1] = verificador[1].classList.remove('flip')
+            verificador[0] = verificador[0].classList.remove('flipped')
+            verificador[1] = verificador[1].classList.remove('flipped')
+        }else{
+            verificador[0] = verificador[0].classList.remove('flipped')
+            verificador[1] = verificador[1].classList.remove('flipped')
+        }
+    }
+
+}
