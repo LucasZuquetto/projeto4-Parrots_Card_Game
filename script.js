@@ -40,16 +40,16 @@ for( let i=0 ; i < QuantidadeCartas*2 ; i ++){
 }
 
 //função para a carta girar com um clique
-const flipcard = document.querySelectorAll('.card')
-function flipCardteste() {
+const cardflip = document.querySelectorAll('.card')
+function flipCard() {
     let verificador = document.querySelectorAll('.flipped')
     if(verificador.length <= 1 && this.classList.contains('flip') == false){
         this.classList.add('flip')
         this.classList.add('flipped')
-        setTimeout(compararcartas, 2000)
+        setTimeout(compararcartas, 1500)
     }
 }
-flipcard.forEach(card => card.addEventListener('click', flipCardteste))
+cardflip.forEach(card => card.addEventListener('click', flipCard))
 
 //função para comparar as cartas e remover a classe flipped
 function compararcartas(){
@@ -82,8 +82,8 @@ function compararcartas(){
 }
 // função para verificar se todas as cartas estão viradas
 function FimDeJogo(){
-    let CartasFlip = document.querySelectorAll('.flip').length
-    if(CartasFlip == QuantidadeCartas*2){
+    let CartasFlipadas = document.querySelectorAll('.flip').length
+    if(CartasFlipadas == QuantidadeCartas*2){
         alert(`Parabéns, você ganhou em ${contador} jogadas`)
     }
 }
