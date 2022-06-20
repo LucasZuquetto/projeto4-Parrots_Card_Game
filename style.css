@@ -10,13 +10,7 @@ h1{
     line-height: 66px;
     color: #75B79E;
 }
-.imgfront{
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 24px;
-    right: 10px;
-}
+
 .title{
     display: flex;
     width: 100%;
@@ -41,5 +35,20 @@ h1{
     border-radius: 5px;
     margin: 17px 17px;
     position: relative;
+    transform-style: preserve-3d;
+    transition: all 1s;
 }
-
+.face{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 24px;
+    right: 10px;
+    backface-visibility: hidden;
+}
+.back-face {
+    transform: rotateY(180deg);
+}
+.flip{
+    transform: rotateY(180deg);
+}

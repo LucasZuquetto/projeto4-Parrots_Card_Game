@@ -8,15 +8,29 @@ while (isNaN(QuantidadeCartas) || QuantidadeCartas % 2 == 1 || 4 > QuantidadeCar
 function comparador() { 
 	return Math.random() - 0.5; 
 }
-const ParrotName = ['bobross','explody','fiesta', 'metal', 'revertit', 'triplets','unicorn']
-ParrotName.sort(comparador)
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
-for( let i=0 ; i < QuantidadeCartas ; i += 2){
+
+for( let i=0 ; i < QuantidadeCartas ; i ++){
+    const ParrotName = ['bobross','explody','fiesta', 'metal', 'revertit', 'triplets','unicorn']
+    ParrotName.sort(comparador)
+
     const CardTemplate = `
     <div class="card">
-        <img class="imgfront" src="./img/${ParrotName[i]}parrot.gif">
+        <img class="face front-face" src="./img/front.png">
+        <img class="face back-face" src="./img/${ParrotName[getRandomIntInclusive(0, 6)]}parrot.gif">
     </div>
     `
-    document.querySelector('.content').innerHTML += CardTemplate + CardTemplate
-    
+    document.querySelector('.content').innerHTML += CardTemplate
 }
+
+
+const card = document.querySelectorAll('.card');
+function flipCard() {
+  this.classList.toggle('flip');
+}
+card.forEach(card => card.addEventListener('click', flipCard));
